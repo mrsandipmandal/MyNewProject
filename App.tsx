@@ -1,118 +1,113 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {View, Text, Image, ScrollView, TouchableOpacity} from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+const ProfileView = () => {
+  const handleEditPress = () => {};
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+    <ScrollView style={styles.container}>
+      <View style={styles.headerContainer}>
+        <Image
+          style={styles.coverPhoto}
+          source={{uri: 'https://www.bootdey.com/image/280x280/1E90FF/1E90FF'}}
+        />
+        <View style={styles.profileContainer}>
+          <Image
+            style={styles.profilePhoto}
+            source={{
+              uri: 'https://www.bootdey.com/img/Content/avatar/avatar1.png',
+            }}
+          />
+          <Text style={styles.nameText}>Your Name</Text>
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </View>
+      <View style={styles.bioContainer}>
+        <Text style={styles.bioText}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et
+          ullamcorper nisi.
+        </Text>
+      </View>
+      <View style={styles.statsContainer}>
+        <View style={styles.statContainer}>
+          <Text style={styles.statCount}>1234</Text>
+          <Text style={styles.statLabel}>Posts</Text>
+        </View>
+        <View style={styles.statContainer}>
+          <Text style={styles.statCount}>5678</Text>
+          <Text style={styles.statLabel}>Followers</Text>
+        </View>
+        <View style={styles.statContainer}>
+          <Text style={styles.statCount}>9101</Text>
+          <Text style={styles.statLabel}>Following</Text>
+        </View>
+      </View>
+      <TouchableOpacity style={styles.button} onPress={handleEditPress}>
+        <Text style={styles.buttonText}>Edit Profile</Text>
+      </TouchableOpacity>
+    </ScrollView>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+const styles = {
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  headerContainer: {
+    alignItems: 'center',
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  coverPhoto: {
+    width: '100%',
+    height: 200,
   },
-  highlight: {
-    fontWeight: '700',
+  profileContainer: {
+    alignItems: 'center',
+    marginTop: -50,
   },
-});
+  profilePhoto: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+  },
+  nameText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginTop: 10,
+  },
+  bioContainer: {
+    padding: 15,
+  },
+  bioText: {
+    fontSize: 16,
+  },
+  statsContainer: {
+    flexDirection: 'row',
+    marginTop: 20,
+    marginBottom: 20,
+  },
+  statContainer: {
+    alignItems: 'center',
+    flex: 1,
+  },
+  statCount: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  statLabel: {
+    fontSize: 16,
+    color: '#999',
+  },
+  button: {
+    backgroundColor: '#0066cc',
+    borderRadius: 5,
+    padding: 10,
+    marginHorizontal: 20,
+  },
+  buttonText: {
+    fontSize: 16,
+    color: '#fff',
+    textAlign: 'center',
+  },
+};
 
-export default App;
+export default ProfileView;
