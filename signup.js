@@ -9,12 +9,12 @@ export default SignUpScreen = () => {
     return (
         <View style={styles.container}>
             <Image
-                source={{ uri: 'https://www.bootdey.com/image/280x280/00BFFF/000000' }}
+                source={{ uri: 'https://www.bootdey.com/image/280x280/20B2AA/20B2AA' }}
                 style={styles.background}
             />
             <View style={styles.logoContainer}>
                 <Image
-                    source={{ uri: 'https://www.bootdey.com/img/Content/avatar/avatar6.png' }}
+                    source={{ uri: 'https://www.bootdey.com/img/Content/avatar/avatar7.png' }}
                     style={styles.logo}
                 />
             </View>
