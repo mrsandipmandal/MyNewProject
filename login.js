@@ -1,136 +1,133 @@
-import React from 'react'
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native'
+import React, { useState } from 'react';
+import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
 
-export default LoginView = () => {
+export default LoginScreen = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
     <View style={styles.container}>
-      <View style={styles.inputContainer}>
+      <Image
+        source={{ uri: 'https://www.bootdey.com/image/280x280/20B2AA/20B2AA' }}
+        style={styles.background}
+      />
+      <View style={styles.logoContainer}>
         <Image
-          style={[styles.icon, styles.inputIcon]}
-          source={{ uri: 'https://img.icons8.com/ios-filled/512/circled-envelope.png' }}
-        />
-        <TextInput
-          style={styles.inputs}
-          placeholder="Email"
-          keyboardType="email-address"
-          underlineColorAndroid="transparent"
+          source={{ uri: 'https://www.bootdey.com/img/Content/avatar/avatar7.png' }}
+          style={styles.logo}
         />
       </View>
-
-      <View style={styles.inputContainer}>
-        <Image
-          style={[styles.icon, styles.inputIcon]}
-          source={{ uri: 'https://img.icons8.com/ios-glyphs/512/key.png' }}
-        />
-        <TextInput
-          style={styles.inputs}
-          placeholder="Password"
-          secureTextEntry={true}
-          underlineColorAndroid="transparent"
-        />
+      <View style={styles.formContainer}>
+        <Text style={styles.title}>Login</Text>
+        <View style={styles.card}>
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Email</Text>
+            <TextInput
+              style={styles.input}
+              value={email}
+              onChangeText={setEmail}
+              placeholder="Email"
+              placeholderTextColor="#999"
+            />
+          </View>
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Password</Text>
+            <TextInput
+              style={styles.input}
+              value={password}
+              onChangeText={setPassword}
+              placeholder="Password"
+              placeholderTextColor="#999"
+              secureTextEntry
+            />
+          </View>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.createAccountButton}>
+            <Text style={styles.createAccountButtonText}>Create Account</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-
-      <TouchableOpacity style={styles.restoreButtonContainer}>
-        <Text>Forgot?</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={[styles.buttonContainer, styles.loginButton]}>
-        <Text style={styles.loginText}>Login</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.buttonContainer}>
-        <Text>Register</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={[styles.buttonContainer, styles.fabookButton]}>
-        <View style={styles.socialButtonContent}>
-          <Image
-            style={styles.icon}
-            source={{ uri: 'https://img.icons8.com/color/70/000000/facebook.png' }}
-          />
-          <Text style={styles.loginText}>Continue with facebook</Text>
-        </View>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={[styles.buttonContainer, styles.googleButton]}>
-        <View style={styles.socialButtonContent}>
-          <Image
-            style={styles.icon}
-            source={{ uri: 'https://img.icons8.com/color/70/000000/youtube.png' }}
-          />
-          <Text style={styles.loginText}>Sign in with google</Text>
-        </View>
-      </TouchableOpacity>
     </View>
-  )
-}
+  );
+};
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
     flex: 1,
+  },
+  background: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+  },
+  logoContainer: {
+    alignItems: 'center',
+    marginTop: 120,
+  },
+  logo: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    resizeMode: 'contain',
+  },
+
+  formContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#B0E0E6',
+  },
+  title: {
+    fontSize: 24,
+    color: '#fff',
+    marginBottom: 20,
+    marginTop: 20,
+  },
+  card: {
+    width: '80%',
+    backgroundColor: '#fff',
+    borderRadius: 4,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    padding: 20,
+    marginBottom: 20,
   },
   inputContainer: {
-    borderBottomColor: '#F5FCFF',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 30,
-    borderBottomWidth: 1,
-    width: 250,
-    height: 45,
-    marginBottom: 15,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  inputs: {
-    height: 45,
-    marginLeft: 16,
-    borderBottomColor: '#FFFFFF',
-    flex: 1,
-  },
-  icon: {
-    width: 30,
-    height: 30,
-  },
-  inputIcon: {
-    marginLeft: 15,
-    justifyContent: 'center',
-  },
-  buttonContainer: {
-    height: 45,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
     marginBottom: 20,
-    width: 250,
-    borderRadius: 30,
   },
-  loginButton: {
-    backgroundColor: '#3498db',
+  label: {
+    fontSize: 16,
+    color: '#333',
   },
-  fabookButton: {
-    backgroundColor: '#3b5998',
+  input: {
+    height: 40,
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    color: '#333',
+    paddingLeft: 10,
   },
-  googleButton: {
-    backgroundColor: '#ff0000',
-  },
-  loginText: {
-    color: 'white',
-  },
-  restoreButtonContainer: {
-    width: 250,
-    marginBottom: 15,
-    alignItems: 'flex-end',
-  },
-  socialButtonContent: {
-    flexDirection: 'row',
-    justifyContent: 'center',
+  button: {
+    width: '100%',
+    height: 40,
+    backgroundColor: '#00BFFF',
     alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 4,
   },
-  socialIcon: {
-    color: '#FFFFFF',
-    marginRight: 5,
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
   },
-})
+  createAccountButton: {
+    marginTop: 20,
+    alignItems:'center',
+  },
+  createAccountButtonText: {
+    color: '#20B2AA',
+    fontSize: 12,
+    fontWeight: 'bold',
+  },
+};
