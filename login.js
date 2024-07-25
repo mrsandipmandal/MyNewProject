@@ -44,9 +44,9 @@ export default LoginScreen = () => {
           <TouchableOpacity style={styles.button}>
             <Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.createAccountButton}>
+          {/* <TouchableOpacity style={styles.createAccountButton} onPress={() => navigation.navigate('./signup')}>
             <Text style={styles.createAccountButtonText}>Create Account</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     </View>
