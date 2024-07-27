@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity, Alert, KeyboardAvoidingView, Platform, ScrollView, Keyboard, StyleSheet } from 'react-native';
-import { BASE_URL } from './config';
-// import { useNavigation } from '@react-navigation/native';
+import { BASE_URL } from '../../config';
+import styles from './_styles'; 
 
-export default function SignUpScreen() {
+export default function Signup({ navigation }) {
     const [fname, setFirstName] = useState('');
     const [lname, setLastName] = useState('');
     const [mobile, setMobile] = useState('');
@@ -29,7 +29,6 @@ export default function SignUpScreen() {
             keyboardDidHideListener.remove();
         };
     }, []);
-
 
     const validateForm = () => {
         if (!fname || !fname || !mobile || !email || !password) {
@@ -96,8 +95,8 @@ export default function SignUpScreen() {
             if (!data.error) {
                 Alert.alert('Success', data.message || 'You have successfully signed up!');
                 // Clear input fields
-                setFname('');
-                setLname('');
+                setFirstName('');
+                setLastName('');
                 setMobile('');
                 setEmail('');
                 setPassword('');
@@ -121,12 +120,12 @@ export default function SignUpScreen() {
                         source={{ uri: 'https://www.bootdey.com/image/280x280/20B2AA/20B2AA' }}
                         style={styles.background}
                     />
-                    <View style={styles.logoContainer}>
+                    {/* <View style={styles.logoContainer}>
                         <Image
                             source={{ uri: 'https://www.bootdey.com/img/Content/avatar/avatar7.png' }}
                             style={styles.logo}
                         />
-                    </View>
+                    </View> */}
                     <View style={[styles.formContainer, keyboardVisible && styles.formContainerWithKeyboard]}>
                         <Text style={styles.title}>Sign Up</Text>
                         <View style={styles.card}>
@@ -194,9 +193,10 @@ export default function SignUpScreen() {
                             <TouchableOpacity style={styles.button} onPress={handleSignUp}>
                                 <Text style={styles.buttonText}>Sign Up</Text>
                             </TouchableOpacity>
-                            {/* <TouchableOpacity style={styles.createAccountButton} onPress={() => navigation.navigate('login')}>
-                                <Text style={styles.createAccountButtonText}>Login</Text>
-                            </TouchableOpacity> */}
+                            <Text style={styles.linkText}>
+                                Already have an account?{' '}
+                                <Text onPress={() => navigation.navigate('Login')}>Login</Text>
+                            </Text>
                         </View>
                     </View>
                 </View>
@@ -204,89 +204,3 @@ export default function SignUpScreen() {
         </KeyboardAvoidingView>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    background: {
-        width: '100%',
-        height: '100%',
-        position: 'absolute',
-    },
-    formContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingBottom: 20, // Default padding
-    },
-    formContainerWithKeyboard: {
-        paddingBottom: 40, // Increased padding when keyboard is visible
-    },
-    logoContainer: {
-        alignItems: 'center',
-        marginTop: 120,
-    },
-    logo: {
-        width: 120,
-        height: 120,
-        borderRadius: 60,
-        resizeMode: 'contain',
-    },
-    title: {
-        fontSize: 24,
-        color: '#fff',
-        marginBottom: 20,
-        marginTop: 20,
-    },
-    card: {
-        width: '80%',
-        backgroundColor: '#fff',
-        borderRadius: 4,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 2,
-        padding: 20,
-        marginBottom: 20,
-    },
-    inputContainer: {
-        marginBottom: 20,
-    },
-    label: {
-        fontSize: 16,
-        color: '#333',
-    },
-    input: {
-        height: 40,
-        borderRadius: 6,
-        borderWidth: 1,
-        borderColor: '#ddd',
-        color: '#333',
-        paddingLeft: 10,
-    },
-    errorText: {
-        color: 'red',
-        marginTop: 5,
-    },
-    button: {
-        width: '100%',
-        height: 40,
-        backgroundColor: '#333',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 4,
-    },
-    buttonText: {
-        color: '#fff',
-        fontSize: 16,
-    },
-/*     createAccountButton: {
-        marginTop: 20,
-        alignItems: 'center',
-    },
-    createAccountButtonText: {
-        color: '#20B2AA',
-        fontSize: 12,
-        fontWeight: 'bold',
-    }, */
-});
